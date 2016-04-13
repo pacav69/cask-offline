@@ -12,29 +12,6 @@ fancy_echo() {
   printf "\n$fmt\n" "$@"
 }
 
-brew_install_or_upgrade() {
-  if brew_is_installed "$1"; then
-    if brew_is_upgradable "$1"; then
-      fancy_echo "Upgrading %s ..." "$1"
-      brew upgrade "$@"
-    else
-      fancy_echo "Already using the latest version of %s. Skipping ..." "$1"
-    fi
-  else
-    fancy_echo "Installing %s ..." "$1"
-    brew install "$@"
-    # todo: add in if failure to get file then try proxy
-    # http_proxy=http://<proxyhost>:<proxyport> brew install $FORMULA
-  fi
-}
-
-brew_is_installed() {
-  brew list -1 | grep -Fqx "$1"
-}
-
-brew_is_upgradable() {
-  ! brew outdated --quiet "$1" >/dev/null
-}
 
 # check if hblist.csv and hbclist.csv exist
 # if files not found inform the user
@@ -45,6 +22,7 @@ brew_is_upgradable() {
 # check if install file exists
 # create file list of install files not found for later download
 
+# install the brew cask file
 function install_cask_file(){
     SaveIFS=$IFS
     IFS=","
@@ -65,6 +43,9 @@ function install_cask_file(){
     IFS=$SaveIFS
 
 }
+
+# install the brew file
+
 function install_brew_file(){
     SaveIFS=$IFS
     IFS=","
@@ -84,6 +65,7 @@ function install_brew_file(){
     IFS=$SaveIFS
 
 }
+
 # check if appname is installed and skip if already installed
 # log that the files are already installed.
 

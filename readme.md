@@ -16,8 +16,8 @@ Connect the external hard drive to the client's computer and run olinst to insta
 # Purpose
 olinst is provided with a list of files to install
 
-Appname: olinst Offline install of homebrew and homebrew-cask files
-version: 0.0.2
+Appname: olinst Offline install of homebrew and homebrew-cask files  
+Version: 0.0.2
 # Description: 
 this script will install homebrew and homebrew-cask files from a list stored in a hblist.csv and hbclist.csv
 Usage: run from external drive
